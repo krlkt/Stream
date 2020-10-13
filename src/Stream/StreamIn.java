@@ -26,5 +26,37 @@ public class StreamIn {
 
         String readString = new String(readBuffer);
         System.out.println("read something: " + readString);
+
+        DataInputStream dis = new DataInputStream(is);
+        try {
+            int readIntValue = dis.readInt();
+            System.out.println("read integer: " + readIntValue);
+        } catch (IOException ex) {
+            System.err.println("couldn’t read data (fatal!)");
+            System.exit(0);
+        }
+
+        //BufferedReader
+        InputStreamReader isr = new InputStreamReader(is);
+        BufferedReader br = new BufferedReader(isr);
+        try {
+            readString = br.readLine();
+            System.out.println("read: " + readString);
+        } catch (IOException ex) {
+            System.err.println("couldn’t read data (fatal)");
+            System.exit(0);
+        }
+
+        //Standard I/O
+        System.out.println("Bitte was eingeben:");
+        isr = new InputStreamReader(System.in);
+
+        br = new BufferedReader(isr);
+        try {
+            readString = br.readLine();
+            System.out.println("las: " + readString);
+        } catch (IOException ex) {
+            System.err.println("nichts gelesen");
+        }
     }
 }

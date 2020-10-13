@@ -1,9 +1,6 @@
 package Stream;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
 
 public class StreamOut {
     public static void main(String[] args) {
@@ -25,6 +22,18 @@ public class StreamOut {
             System.err.println("couldn’t write data (fatal)");
             System.exit(0);
         }
+
+        DataOutputStream dos = new DataOutputStream(os);
+        try {
+            dos.writeInt(42);
+        } catch (IOException ex) {
+            System.err.println("couldn’t write data (fatal)");
+            System.exit(0);
+        }
+
+        PrintStream ps = new PrintStream(os);
+        ps.println("Hello Stream");
+
     }
 }
 
